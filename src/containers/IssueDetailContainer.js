@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import styles from './IssueDetailContainer.scss'
+
 class IssueDetailContainer extends Component {
   render() {
     return (
@@ -24,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(IssueDetailContainer)
+)(IssueDetailContainer, styles)
