@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "NODE_ENV=development babel-node server.babel.js",
+    "serve-finished": "NODE_ENV=development babel-node server-finished.babel.js",
     "webpack:build": "node_modules/.bin/webpack --bail",
     "webpack:serve": "NODE_ENV=development babel-node webpack-dev-server.babel.js"
   },
