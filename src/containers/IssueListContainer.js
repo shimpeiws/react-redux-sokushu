@@ -3,9 +3,22 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import { findIssues } from '../actions/issue'
+
 import styles from './IssueListContainer.scss'
 
 class IssueListContainer extends Component {
+  componentDidMount() {
+    this.init()
+  }
+
+  init() {
+    try {
+      this.props.findIssues()
+    } catch(error) {
+    }
+  }
+
   render() {
     console.log("styles", styles)
     return (
@@ -21,7 +34,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch)
+  return bindActionCreators({
+    findIssues,
+  }, dispatch)
 }
 
 export default connect(
