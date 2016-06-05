@@ -6,6 +6,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import _ from 'lodash'
+import 'babel-polyfill'
+
 
 import IssueContainer from '../containers/IssueContainer'
 import IssueListContainer from '../containers/IssueListContainer'
