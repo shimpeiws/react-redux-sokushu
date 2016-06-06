@@ -30,7 +30,7 @@ export default class Issue extends _Issue {
     return (new this).merge({
       id: parseInt(issue.id),
       title: issue.title,
-      status: issue.sttus,
+      status: issue.status,
       comment_count: issue.comment_count,
       created: issue.created,
       updated: issue.updated,
