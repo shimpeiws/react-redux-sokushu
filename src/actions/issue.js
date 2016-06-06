@@ -23,7 +23,6 @@ async function findIssuesRequest(params={}) {
     data: params,
     timeout: 100000,
   })
-  console.log("response", response)
   return initIssues(response)
 }
 
@@ -36,11 +35,9 @@ function setIssues(issues) {
 
 export function findIssues() {
   return async(dispatch) => {
-    console.log("findIssues!!!!")
     try {
       const issues = await findIssuesRequest()
       dispatch(setIssues(issues))
-      console.log("issues", issues)
     } catch (error) {
       console.log("error", error)
     }

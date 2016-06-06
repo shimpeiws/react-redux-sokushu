@@ -22,13 +22,10 @@ class IssueListContainer extends Component {
   }
 
   onClickTitle(issue) {
-    console.log("caonteiner", issue)
     this.context.router.push(`/${issue.id}`)
   }
 
   render() {
-    console.log("styles", styles)
-    console.log("issues!!!", this.props.issues)
     const { issues } = this.props
     return (
       <div className={styles.base}>
