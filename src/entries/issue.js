@@ -22,7 +22,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={IssueContainer}>
         <IndexRoute component={IssueListContainer} />
-        <Route path="/:number" component={IssueDetailContainer} />
+        <Route path="/:id" component={IssueDetailContainer} />
       </Route>
     </Router>
   </Provider>,
