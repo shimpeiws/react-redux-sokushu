@@ -1,3 +1,25 @@
 .base {
   background-color: green;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.base-row {
+  align-items: center;
+}
+
+.row {
+  composes: base-row;
+  flex: 1;
+}
+
+.row-2 {
+  composes: base-row;
+  flex: 2;
+}
+
+.row-3 {
+  composes: base-row;
+  flex: 3;
 }

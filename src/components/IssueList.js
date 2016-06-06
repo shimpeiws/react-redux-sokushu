@@ -11,11 +11,20 @@ class IssueList extends Component {
     return(
       <div styleName="base">
         Issue List!!!
+        <div styleName="header">
+          <div styleName="row">id</div>
+          <div styleName="row-3">title</div>
+          <div styleName="row-2">status</div>
+          <div styleName="row">comment count</div>
+          <div styleName="row-3">created</div>
+          <div styleName="row-3">updated</div>
+        </div>
         {
           issues.map((issue) => {
             return (<IssueListItem
               key={issue.id}
               issue={issue}
+              onClickTitle={this.props.onClickTitle.bind(null, issue)}
             />)
           })
         }

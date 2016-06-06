@@ -21,6 +21,11 @@ class IssueListContainer extends Component {
     }
   }
 
+  onClickTitle(issue) {
+    console.log("caonteiner", issue)
+    this.context.router.push(`/${issue.id}`)
+  }
+
   render() {
     console.log("styles", styles)
     console.log("issues!!!", this.props.issues)
@@ -30,10 +35,15 @@ class IssueListContainer extends Component {
         IssueListContainer!!!
         <IssueList
           issues={issues}
+          onClickTitle={this.onClickTitle.bind(this)}
         />
       </div>
     )
   }
+}
+
+IssueListContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
