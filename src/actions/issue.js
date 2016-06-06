@@ -27,13 +27,21 @@ async function findIssuesRequest(params={}) {
   return initIssues(response)
 }
 
+function setIssues(issues) {
+  return {
+    type: Actions.SET_ISSUES,
+    issues,
+  }
+}
+
 export function findIssues() {
   return async(dispatch) => {
     console.log("findIssues!!!!")
     try {
       const issues = await findIssuesRequest()
+      dispatch(setIssues(issues))
       console.log("issues", issues)
-    } catch(error) {
+    } catch (error) {
       console.log("error", error)
     }
   }

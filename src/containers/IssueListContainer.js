@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux'
 
 import { findIssues } from '../actions/issue'
 
+import IssueList from '../components/IssueList'
+
 import styles from './IssueListContainer.scss'
 
 class IssueListContainer extends Component {
@@ -21,16 +23,23 @@ class IssueListContainer extends Component {
 
   render() {
     console.log("styles", styles)
+    console.log("issues!!!", this.props.issues)
+    const { issues } = this.props
     return (
       <div className={styles.base}>
         IssueListContainer!!!
+        <IssueList
+          issues={issues}
+        />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    issues: state.issue.issueList,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
