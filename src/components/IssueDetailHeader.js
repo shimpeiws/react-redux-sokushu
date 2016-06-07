@@ -17,6 +17,7 @@ class IssueDetailHeader extends  Component {
         <div>
           <span>assign</span>
           <span>labels</span>
+          <span>labels</span>
         </div>
       </div>
     )
