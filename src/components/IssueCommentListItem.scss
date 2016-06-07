@@ -1,0 +1,30 @@
+.base {
+  border: 1px solid DarkGray;
+  border-radius: 3px;
+}
+
+.header {
+  background-color: LightGray;
+  padding: 10px 10px;
+  display: flex;
+}
+
+.header-name {
+  flex: 4;
+  font-weight: 600;
+}
+
+.header-date {
+  flex: 12;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.header-icon {
+  flex: 1;
+}
+
+.main {
+  background-color: white;
+  padding: 10px 10px;
+}

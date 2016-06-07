@@ -1,5 +1,6 @@
 .base {
   border-bottom: 1px solid DarkGray;
+  margin-bottom: 10px;
 }
 
 .title-wrapper {
@@ -20,7 +21,7 @@
   height: 30px;
   line-height: 30px;
   border-radius: 3px;
-  background: DarkGray;
+  color: DarkGray;
   cursor: pointer;
 }
 
@@ -38,5 +39,5 @@
 .items {
   flex: 1;
   font-size: 20px;
-  font-size: DimGray;
+  color: DimGray;
 }

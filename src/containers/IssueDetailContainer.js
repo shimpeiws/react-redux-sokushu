@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import IssueDetailHeader from '../components/IssueDetailHeader'
+import IssueCommentList from '../components/IssueCommentList'
 import IssueCommentForm from '../components/IssueCommentForm'
 
 import { findIssueDetail } from '../actions/issueDetail'
@@ -25,13 +26,18 @@ class IssueDetailContainer extends Component {
 
   render() {
     const { issueDetail } = this.props
-
+    console.log("issueDetail.comments", issueDetail.comments)
     return (
       <div className={styles.base}>
         <IssueDetailHeader
           issue={issueDetail}
         />
-      <IssueCommentForm />
+        <div className={styles.main}>
+          <IssueCommentList
+            comments={issueDetail.comments}
+          />
+          <IssueCommentForm />
+        </div>
       </div>
     )
   }
