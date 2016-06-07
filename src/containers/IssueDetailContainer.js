@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import IssueDetailHeader from '../components/IssueDetailHeader'
+
 import { findIssueDetail } from '../actions/issueDetail'
 
 import styles from './IssueDetailContainer.scss'
@@ -25,6 +27,9 @@ class IssueDetailContainer extends Component {
 
     return (
       <div>
+        <IssueDetailHeader
+          issue={issueDetail}
+        />
         IssueDetailContainer!!!
         {issueDetail.id}
         {issueDetail.title}
