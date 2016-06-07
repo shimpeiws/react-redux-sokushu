@@ -1,3 +1,35 @@
 .base {
   border-bottom: 1px solid DarkGray;
 }
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  margin-right: auto;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.edit-button {
+  display: block;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+  background: DarkGray;
+  cursor: pointer;
+}
+
+.assign-label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.items {
+  flex: 1;
+  font-size: 20px;
+}
