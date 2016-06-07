@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import IssueDetailHeader from '../components/IssueDetailHeader'
+import IssueCommentForm from '../components/IssueCommentForm'
 
 import { findIssueDetail } from '../actions/issueDetail'
 
@@ -30,10 +31,7 @@ class IssueDetailContainer extends Component {
         <IssueDetailHeader
           issue={issueDetail}
         />
-        IssueDetailContainer!!!
-        {issueDetail.id}
-        {issueDetail.title}
-        {issueDetail.status}
+      <IssueCommentForm />
       </div>
     )
   }
