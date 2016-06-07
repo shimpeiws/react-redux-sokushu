@@ -28,26 +28,26 @@ class IssueDetailHeader extends  Component {
           </div>
         </div>
         <div styleName="assign-label-wrapper">
-          <div styleName="items">
+          <div styleName="item-labels">
             assign
           </div>
-          <div styleName="items">
+          <div styleName="item-labels">
             labels
           </div>
         </div>
         <div styleName="assign-label-wrapper">
           <div styleName="items">
-            assign
+            User Name Here
           </div>
           <div styleName="items">
-            labels
+            <span>label1</span><span>label2</span>
           </div>
         </div>
         <div styleName="assign-label-wrapper">
-          <div styleName="items">
+          <div styleName="item-labels">
             created
           </div>
-          <div styleName="items">
+          <div styleName="item-labels">
             updated
           </div>
         </div>

@@ -29,7 +29,14 @@
   align-items: center;
 }
 
+.item-labels {
+  flex: 1;
+  font-size: 15px;
+  color: 	LightGrey;
+}
+
 .items {
   flex: 1;
   font-size: 20px;
+  font-size: DimGray;
 }
