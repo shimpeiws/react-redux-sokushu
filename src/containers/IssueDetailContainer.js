@@ -26,7 +26,7 @@ class IssueDetailContainer extends Component {
     const { issueDetail } = this.props
 
     return (
-      <div>
+      <div className={styles.base}>
         <IssueDetailHeader
           issue={issueDetail}
         />
