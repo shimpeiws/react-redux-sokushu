@@ -9,6 +9,7 @@ const Actions = {
   SET_ISSUE_DETAIL: 'issue_detail/set_issue_detail',
   SET_COMMENTS: 'issue_detail/set_comments',
   SET_TITLE_EDITING: 'issue_detail/set_title_editing',
+  SET_LOADING: 'issue_detail/set_loading',
 }
 
 export default Actions
@@ -68,14 +69,23 @@ function setTitleEditing(editing) {
   }
 }
 
+function setLoading(loading) {
+  return {
+    type: Actions.SET_LOADING,
+    loading,
+  }
+}
+
 export function findIssueDetail(issueId) {
   return async(dispatch) => {
+    dispatch(setLoading(true))
     try {
       const issueDetail = await findIssueDetailRequest(issueId)
       dispatch(setIssueDetail(issueDetail))
     } catch(error) {
       console.log("error", error)
     }
+    dispatch(setLoading(false))
   }
 }
 

@@ -33,6 +33,8 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
   switch (action.type) {
     case IssueDetailActions.SET_TITLE_EDITING:
       return state.set('isTitleEditing', action.editing)
+    case IssueDetailActions.SET_LOADING:
+      return state.set('loading', action.loading)
     default:
       break // do nothing
   }

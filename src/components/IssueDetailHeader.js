@@ -5,13 +5,23 @@ import { STATE } from './../lib/records/Issue'
 
 import styles from './IssueDetailHeader.scss'
 
-class IssueDetailHeader extends  Component {
+class IssueDetailHeader extends Component {
+  constructor(props) {
+    super(props)
+    console.log("this.props.issue.title", this.props.issue.title)
+    this.state = {
+      title: this.props.issue.title,
+    }
+  }
+
+  onChangeTitle(e) {
+    this.setState('title', e.target.value)
+  }
+
   render() {
     const { issue } = this.props
-    console.log("this.props.isTitleEditing", this.props.isTitleEditing)
     return (
       <div styleName="base">
-        isTitleEditing: {this.props.isTitleEditing}
         <div>
           {
             issue.status === STATE.OPEN ?
@@ -25,7 +35,15 @@ class IssueDetailHeader extends  Component {
               <div styleName="title">
                 <input
                   type="text"
+                  value={this.state.title}
+                  onChange={this.onChangeTitle.bind(this)}
                 />
+                <div
+                  styleName="edit-button"
+                  onClick={this.props.onClickTitleSave}
+                >
+                  Save
+                </div>
               </div>
             </div>) : (
             <span>
@@ -33,7 +51,7 @@ class IssueDetailHeader extends  Component {
                 {issue.title}
               </div>
               <div styleName="edit-button" onClick={this.props.onClickTitleEdit}>
-                edit
+                Edit
               </div>
             </span>
             )
