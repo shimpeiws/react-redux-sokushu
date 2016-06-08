@@ -8,6 +8,7 @@ import Comment from '../lib/records/Comment'
 const Actions = {
   SET_ISSUE_DETAIL: 'issue_detail/set_issue_detail',
   SET_COMMENTS: 'issue_detail/set_comments',
+  SET_TITLE_EDITING: 'issue_detail/set_title_editing',
 }
 
 export default Actions
@@ -60,6 +61,13 @@ function setComments(comments) {
   }
 }
 
+function setTitleEditing(editing) {
+  return {
+    type: Actions.SET_TITLE_EDITING,
+    editing,
+  }
+}
+
 export function findIssueDetail(issueId) {
   return async(dispatch) => {
     try {
@@ -83,5 +91,11 @@ export function addComment(issueDetail, comment) {
       console.log("error", error)
       dispatch(setComments(prevComments)) // fallback to previous state
     }
+  }
+}
+
+export function changeTitleEditing(editing) {
+  return async(dispatch) => {
+    dispatch(setTitleEditing(editing))
   }
 }

@@ -8,9 +8,10 @@ import styles from './IssueDetailHeader.scss'
 class IssueDetailHeader extends  Component {
   render() {
     const { issue } = this.props
-    console.log("issue.status", issue.status)
+    console.log("this.props.isTitleEditing", this.props.isTitleEditing)
     return (
       <div styleName="base">
+        isTitleEditing: {this.props.isTitleEditing}
         <div>
           {
             issue.status === STATE.OPEN ?
@@ -20,12 +21,23 @@ class IssueDetailHeader extends  Component {
           {issue.status}
         </div>
         <div styleName="title-wrapper">
-          <div styleName="title">
-            {issue.title}
-          </div>
-          <div styleName="edit-button">
-            edit
-          </div>
+          { this.props.isTitleEditing ? (<div>
+              <div styleName="title">
+                <input
+                  type="text"
+                />
+              </div>
+            </div>) : (
+            <span>
+              <div styleName="title">
+                {issue.title}
+              </div>
+              <div styleName="edit-button" onClick={this.props.onClickTitleEdit}>
+                edit
+              </div>
+            </span>
+            )
+          }
         </div>
         <div styleName="assign-label-wrapper">
           <div styleName="item-labels">
