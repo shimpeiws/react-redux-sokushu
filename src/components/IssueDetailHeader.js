@@ -8,7 +8,6 @@ import styles from './IssueDetailHeader.scss'
 class IssueDetailHeader extends Component {
   constructor(props) {
     super(props)
-    console.log("this.props.issue.title", this.props.issue.title)
     this.state = {
       title: this.props.issue.title,
     }

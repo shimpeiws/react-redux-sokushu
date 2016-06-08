@@ -15,7 +15,6 @@ class IssueCommentForm extends Component {
   }
 
   onClickComment() {
-    console.log("this.state", this.state)
     const comment = Comment.fromJS(this.state)
     this.props.onClickComment(comment)
   }

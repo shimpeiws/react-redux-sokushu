@@ -22,7 +22,6 @@ class IssueDetailContainer extends Component {
   }
 
   init() {
-    console.log("this.props.params", this.props.params.id)
     try {
       this.props.findIssueDetail(this.props.params.id)
     } catch(error) {
@@ -30,7 +29,6 @@ class IssueDetailContainer extends Component {
   }
 
   onClickComment(comment) {
-    console.log("comment", comment)
     this.props.addComment(this.props.issueDetail, comment)
   }
 
@@ -44,7 +42,6 @@ class IssueDetailContainer extends Component {
 
   render() {
     const { issueDetail, issueDetailManager } = this.props
-    console.log("issueDetailManager.loading", issueDetailManager.loading)
     return (
       <div className={styles.base}>
         <Loader loaded={!issueDetailManager.loading}>

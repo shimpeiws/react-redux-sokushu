@@ -19,7 +19,6 @@ function initIssueDetail(issueDetail) {
 }
 
 async function findIssueDetailRequest(issueId) {
-  console.log("issueId")
   const response = await $.ajax({
     url: `${END_POINTS.ISSUES}/${issueId}`,
     method: 'GET',
@@ -48,7 +47,6 @@ async function postCommentRequest(issue, comment) {
 }
 
 function setIssueDetail(issueDetail) {
-  console.log("issueDetail", issueDetail)
   return {
     type: Actions.SET_ISSUE_DETAIL,
     issueDetail,
