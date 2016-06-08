@@ -14,7 +14,14 @@ class IssueDetailHeader extends Component {
   }
 
   onChangeTitle(e) {
-    this.setState('title', e.target.value)
+    this.setState({title: e.target.value})
+  }
+
+  onClickTitleSave() {
+    console.log("onClickTitleSave!!!")
+    const newIssue = this.props.issue.set('title', this.state.title)
+    console.log("newIssue", newIssue)
+    this.props.onClickTitleSave(newIssue)
   }
 
   render() {
@@ -39,7 +46,7 @@ class IssueDetailHeader extends Component {
                 />
                 <div
                   styleName="edit-button"
-                  onClick={this.props.onClickTitleSave}
+                  onClick={this.onClickTitleSave.bind(this)}
                 >
                   Save
                 </div>

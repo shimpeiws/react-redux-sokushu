@@ -1,5 +1,5 @@
 export const API_HOSTS = {
-  REACT_REDUX_SOKUSHU_API: 'https://react-redux-sokushu-api.herokuapp.com/',
+  REACT_REDUX_SOKUSHU_API: 'https://react-redux-sokushu-api.herokuapp.com',
 }
 
 const END_POINTS = {

@@ -28,6 +28,24 @@ async function findIssueDetailRequest(issueId) {
   return initIssueDetail(response)
 }
 
+async function updateIssueRequest(issue) {
+  const data = {
+    issue: {
+      id: issue.id,
+      title: issue.title,
+    }
+  }
+console.log("issue.id", issue.id)
+  const response = await $.ajax({
+    url: `${END_POINTS.ISSUES}/${issue.id}`,
+    method: 'PUT',
+    data,
+    timeout: 100000,
+  })
+
+  return initIssueDetail(response)
+}
+
 async function postCommentRequest(issue, comment) {
   const data = {
     comment: {
@@ -105,5 +123,16 @@ export function addComment(issueDetail, comment) {
 export function changeTitleEditing(editing) {
   return async(dispatch) => {
     dispatch(setTitleEditing(editing))
+  }
+}
+
+export function updateIssue(issueDetail) {
+  return async(dispatch) => {
+    dispatch(setIssueDetail(issueDetail))
+    try {
+      await updateIssueRequest(issueDetail)
+    } catch (error) {
+      console.log("error", error)
+    }
   }
 }

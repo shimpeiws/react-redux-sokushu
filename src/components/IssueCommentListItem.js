@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 import CSSModules from 'react-css-modules'
 
+import nl2br from '../lib/utils/nl2br'
+
 import styles from './IssueCommentListItem.scss'
 
 class IssueCommentListItem extends Component {
@@ -24,7 +26,7 @@ class IssueCommentListItem extends Component {
           </div>
         </div>
         <div styleName="main">
-          {comment.content}
+          {nl2br(comment.content)}
         </div>
       </div>
     )

@@ -12,6 +12,7 @@ import {
   findIssueDetail,
   addComment,
   changeTitleEditing,
+  updateIssue,
 } from '../actions/issueDetail'
 
 import styles from './IssueDetailContainer.scss'
@@ -36,8 +37,9 @@ class IssueDetailContainer extends Component {
     this.props.changeTitleEditing(true)
   }
 
-  onClickTitleSave() {
+  onClickTitleSave(issue) {
     this.props.changeTitleEditing(false)
+    this.props.updateIssue(issue)
   }
 
   render() {
@@ -81,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
     findIssueDetail,
     addComment,
     changeTitleEditing,
+    updateIssue,
   }, dispatch)
 }
 
