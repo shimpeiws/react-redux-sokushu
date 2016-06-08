@@ -8,8 +8,6 @@ config.plugins.unshift(
   new webpack.NoErrorsPlugin()
 )
 
-const compiler = webpack(config)
-const app = express()
 const webpackDevModules = [
   `webpack-hot-middleware/client?path=${serverURI}/__webpack_hmr`,
 ]
@@ -17,6 +15,9 @@ const webpackDevModules = [
 _.each(config.entry, (file, name) => {
   config.entry[name] = webpackDevModules.concat([file])
 })
+
+const compiler = webpack(config)
+const app = express()
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
