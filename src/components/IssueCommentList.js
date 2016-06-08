@@ -16,6 +16,7 @@ class IssueCommentList extends Component {
             return (<IssueCommentListItem
               key={comment.id}
               comment={comment}
+              onClickSave={this.props.onClickSave}
             />)
           })
         }

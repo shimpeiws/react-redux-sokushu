@@ -38,7 +38,7 @@ async function updateIssueRequest(issue) {
 console.log("issue.id", issue.id)
   const response = await $.ajax({
     url: `${END_POINTS.ISSUES}/${issue.id}`,
-    method: 'PUT',
+    method: 'PATCH',
     data,
     timeout: 100000,
   })
@@ -46,18 +46,31 @@ console.log("issue.id", issue.id)
   return initIssueDetail(response)
 }
 
-async function postCommentRequest(issue, comment) {
-  const data = {
+function buildCommentRequestData(comment) {
+  return {
     comment: {
       user_name: comment.userName,
       content: comment.content,
     },
   }
+}
 
+async function postCommentRequest(issue, comment) {
   const response = await $.ajax({
     url: `${END_POINTS.ISSUES}/${issue.id}/comments`,
     method: 'POST',
-    data,
+    data: buildCommentRequestData(comment),
+    timeout: 100000,
+  })
+
+  return Comment.fromJS(response)
+}
+
+async function putCommentRequest(issue, comment) {
+  const response = await $.ajax({
+    url: `${END_POINTS.ISSUES}/${issue.id}/comments/${comment.id}`,
+    method: 'PUT',
+    data: buildCommentRequestData(comment),
     timeout: 100000,
   })
 
@@ -108,11 +121,34 @@ export function findIssueDetail(issueId) {
 export function addComment(issueDetail, comment) {
   return async(dispatch) => {
     const prevComments = issueDetail.comments
-    const nextComments = prevComments.push(comment)
-    dispatch(setComments(nextComments))
 
     try {
-      await postCommentRequest(issueDetail, comment)
+      const newComment = await postCommentRequest(issueDetail, comment)
+      dispatch(setComments(prevComments.push(newComment)))
+    } catch (error) {
+      console.log("error", error)
+      dispatch(setComments(prevComments)) // fallback to previous state
+    }
+  }
+}
+
+export function updateComment(issueDetail, comment) {
+  return async(dispatch) => {
+    const prevComments = issueDetail.comments
+
+    try {
+      const newComment = await putCommentRequest(issueDetail, comment)
+      console.log("newComment", newComment)
+      const nextComments = prevComments.update(
+        prevComments.findIndex((target) => {
+          return target.id === newComment.id
+        }),
+        (_comment) => {
+          return newComment
+        }
+      )
+      console.log("nextComments", nextComments)
+      dispatch(setComments(nextComments))
     } catch (error) {
       console.log("error", error)
       dispatch(setComments(prevComments)) // fallback to previous state
