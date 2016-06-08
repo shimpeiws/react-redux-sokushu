@@ -17,6 +17,7 @@ class IssueCommentList extends Component {
               key={comment.id}
               comment={comment}
               onClickSave={this.props.onClickSave}
+              onClickDelete={this.props.onClickDelete}
             />)
           })
         }

@@ -35,7 +35,7 @@ async function updateIssueRequest(issue) {
       title: issue.title,
     }
   }
-console.log("issue.id", issue.id)
+
   const response = await $.ajax({
     url: `${END_POINTS.ISSUES}/${issue.id}`,
     method: 'PATCH',
@@ -75,6 +75,14 @@ async function putCommentRequest(issue, comment) {
   })
 
   return Comment.fromJS(response)
+}
+
+async function deleteCommentRequest(issue, comment) {
+  await $.ajax({
+    url: `${END_POINTS.ISSUES}/${issue.id}/comments/${comment.id}`,
+    method: 'DELETE',
+    timeout: 100000,
+  })
 }
 
 function setIssueDetail(issueDetail) {
@@ -138,7 +146,6 @@ export function updateComment(issueDetail, comment) {
 
     try {
       const newComment = await putCommentRequest(issueDetail, comment)
-      console.log("newComment", newComment)
       const nextComments = prevComments.update(
         prevComments.findIndex((target) => {
           return target.id === newComment.id
@@ -147,8 +154,26 @@ export function updateComment(issueDetail, comment) {
           return newComment
         }
       )
-      console.log("nextComments", nextComments)
       dispatch(setComments(nextComments))
+    } catch (error) {
+      console.log("error", error)
+      dispatch(setComments(prevComments)) // fallback to previous state
+    }
+  }
+}
+
+export function deleteComment(issueDetail, comment) {
+  return async(dispatch) => {
+    const prevComments = issueDetail.comments
+    const nextComments = prevComments.delete(
+      prevComments.findIndex((target) => {
+        return target.id === comment.id
+      })
+    )
+    dispatch(setComments(nextComments))
+
+    try {
+      await deleteCommentRequest(issueDetail, comment)
     } catch (error) {
       console.log("error", error)
       dispatch(setComments(prevComments)) // fallback to previous state

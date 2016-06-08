@@ -30,6 +30,7 @@ class IssueCommentListItem extends Component {
 
   onClickDelete() {
     console.log("onclickdelete")
+    this.props.onClickDelete(this.props.comment)
   }
 
   onChangeContent(e) {

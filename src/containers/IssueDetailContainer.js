@@ -12,6 +12,7 @@ import {
   findIssueDetail,
   addComment,
   updateComment,
+  deleteComment,
   changeTitleEditing,
   updateIssue,
 } from '../actions/issueDetail'
@@ -30,12 +31,16 @@ class IssueDetailContainer extends Component {
     }
   }
 
-  onClickComment(comment) {
+  onClickCommentSave(comment) {
     if (comment.id) {
       this.props.updateComment(this.props.issueDetail, comment)
     } else {
       this.props.addComment(this.props.issueDetail, comment)
     }
+  }
+
+  onClickCommentDelete(comment) {
+    this.props.deleteComment(this.props.issueDetail, comment)
   }
 
   onClickTitleEdit() {
@@ -61,10 +66,11 @@ class IssueDetailContainer extends Component {
           <div className={styles.main}>
             <IssueCommentList
               comments={issueDetail.comments}
-              onClickSave={this.onClickComment.bind(this)}
+              onClickSave={this.onClickCommentSave.bind(this)}
+              onClickDelete={this.onClickCommentDelete.bind(this)}
             />
             <IssueCommentForm
-              onClickComment={this.onClickComment.bind(this)}
+              onClickComment={this.onClickCommentSave.bind(this)}
             />
           </div>
         </Loader>
@@ -89,6 +95,7 @@ const mapDispatchToProps = (dispatch) => {
     findIssueDetail,
     addComment,
     updateComment,
+    deleteComment,
     changeTitleEditing,
     updateIssue,
   }, dispatch)
