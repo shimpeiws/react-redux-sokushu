@@ -20,6 +20,8 @@ function issueDetail(state = new Issue(), action) {
   switch (action.type) {
     case IssueDetailActions.SET_ISSUE_DETAIL:
       return action.issueDetail
+    case IssueDetailActions.SET_COMMENTS:
+      return state.set('comments', action.comments)
     default:
       break // do nothing
   }

@@ -7,7 +7,10 @@ import IssueDetailHeader from '../components/IssueDetailHeader'
 import IssueCommentList from '../components/IssueCommentList'
 import IssueCommentForm from '../components/IssueCommentForm'
 
-import { findIssueDetail } from '../actions/issueDetail'
+import {
+  findIssueDetail,
+  addComment,
+} from '../actions/issueDetail'
 
 import styles from './IssueDetailContainer.scss'
 
@@ -24,6 +27,11 @@ class IssueDetailContainer extends Component {
     }
   }
 
+  onClickComment(comment) {
+    console.log("comment", comment)
+    this.props.addComment(this.props.issueDetail, comment)
+  }
+
   render() {
     const { issueDetail } = this.props
     console.log("issueDetail.comments", issueDetail.comments)
@@ -36,7 +44,9 @@ class IssueDetailContainer extends Component {
           <IssueCommentList
             comments={issueDetail.comments}
           />
-          <IssueCommentForm />
+          <IssueCommentForm
+            onClickComment={this.onClickComment.bind(this)}
+          />
         </div>
       </div>
     )
@@ -56,6 +66,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     findIssueDetail,
+    addComment,
   }, dispatch)
 }
 
