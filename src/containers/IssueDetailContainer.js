@@ -17,6 +17,7 @@ import {
   changeTitleEditing,
   updateIssue,
   setShowUsersModal,
+  setShowLabelsModal,
 } from '../actions/issueDetail'
 
 import styles from './IssueDetailContainer.scss'
@@ -59,8 +60,16 @@ class IssueDetailContainer extends Component {
     this.props.updateIssue(issue)
   }
 
+  onLabelsSelected(issue) {
+    this.props.updateIssue(issue)
+  }
+
   onChangeShowUsersModal(show) {
     this.props.setShowUsersModal(show)
+  }
+
+  onChangeShowLabelsModal(show) {
+    this.props.setShowLabelsModal(show)
   }
 
   render() {
@@ -76,7 +85,9 @@ class IssueDetailContainer extends Component {
             onClickTitleEdit={this.onClickTitleEdit.bind(this)}
             onClickTitleSave={this.onClickTitleSave.bind(this)}
             onAssigneeSelected={this.onAssigneeSelected.bind(this)}
+            onLabelsSelected={this.onLabelsSelected.bind(this)}
             onChangeShowUsersModal={this.onChangeShowUsersModal.bind(this)}
+            onChangeShowLabelsModal={this.onChangeShowLabelsModal.bind(this)}
           />
           <div className={styles.main}>
             <IssueDescription
@@ -120,6 +131,7 @@ const mapDispatchToProps = (dispatch) => {
     changeTitleEditing,
     updateIssue,
     setShowUsersModal,
+    setShowLabelsModal,
   }, dispatch)
 }
 

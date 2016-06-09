@@ -27,13 +27,32 @@ class IssueDetailHeader extends Component {
     return this.props.issue.assignee !== null && user.id === this.props.issue.assignee.id
   }
 
+  isSelectedLabel(label) {
+    return this.props.issue.labels.map((l) => l.id).includes(label.id)
+  }
+
   onAssigneeSelected(user, e) {
     const newIssue = this.props.issue.set('assignee', user)
     this.props.onAssigneeSelected(newIssue)
   }
 
+  onLabelSelected(label, e) {
+    var labels = this.props.issue.labels
+    if (this.isSelectedLabel(label)) {
+      labels = labels.filter((l) => l.id !== label.id)
+    } else {
+      labels = labels.push(label)
+    }
+    const newIssue = this.props.issue.set('labels', labels)
+    this.props.onLabelsSelected(newIssue)
+  }
+
   onChangeShowUsersModal(show) {
     this.props.onChangeShowUsersModal(show)
+  }
+
+  onChangeShowLabelsModal(show) {
+    this.props.onChangeShowLabelsModal(show)
   }
 
   render() {
@@ -112,8 +131,31 @@ class IssueDetailHeader extends Component {
               </ul>
             </Modal>
           </div>
-          <div styleName="items">
-            <span>label1</span><span>label2</span>
+          <div styleName="items"
+               onClick={this.onChangeShowLabelsModal.bind(this, true)}
+          >
+            {issue.labels.size > 0 ? issue.labels.map((label) => (<span>{label.name}</span>)) : ("No Labels")}
+            <Modal
+              isOpen={issueDetailManager.showLabelsModal}
+            >
+              <ul>
+                <li
+                  onClick={this.onChangeShowLabelsModal.bind(this, false)}
+                >close</li>
+                {
+                  issueManager.labels.map((label) => {
+                    return (
+                      <li
+                        key={label.id}
+                        onClick={this.onLabelSelected.bind(this, label)}
+                      >{label.name}
+                        { this.isSelectedLabel(label) ? <span> selected!</span> : (null)}
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </Modal>
           </div>
         </div>
         <div styleName="assign-label-wrapper">

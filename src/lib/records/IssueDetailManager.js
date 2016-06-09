@@ -4,7 +4,7 @@ const _IssueDetailManager = Record({
   isTitleEditing: false,
   loading: false,
   showUsersModal: false,
-  shwoLabelsModal: false,
+  showLabelsModal: false,
 })
 
 export default class IssueDetailManager extends _IssueDetailManager {

@@ -18,6 +18,7 @@ const _Issue = Record({
   comments: new List(),
   content: '',
   assignee: new User(),
+  labels: new List(),
 })
 
 export default class Issue extends _Issue {

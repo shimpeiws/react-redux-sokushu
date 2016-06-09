@@ -36,7 +36,8 @@ async function updateIssueRequest(issue) {
       id: issue.id,
       title: issue.title,
       status: issue.status,
-      assignee_id: issue.assignee.id
+      assignee_id: issue.assignee.id,
+      label_ids: issue.labels.map((label) => label.id).toArray()
     }
   }
 
