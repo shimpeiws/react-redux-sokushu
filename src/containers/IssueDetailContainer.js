@@ -7,6 +7,7 @@ import Loader from 'react-loader'
 import IssueDetailHeader from '../components/IssueDetailHeader'
 import IssueCommentList from '../components/IssueCommentList'
 import IssueCommentForm from '../components/IssueCommentForm'
+import IssueDescription from '../components/IssueDescription'
 
 import {
   findIssueDetail,
@@ -68,6 +69,9 @@ class IssueDetailContainer extends Component {
             onClickTitleSave={this.onClickTitleSave.bind(this)}
           />
           <div className={styles.main}>
+            <IssueDescription
+              issue={issueDetail}
+            />
             <IssueCommentList
               comments={issueDetail.comments}
               onClickSave={this.onClickCommentSave.bind(this)}

@@ -15,6 +15,7 @@ const _Issue = Record({
   created: '',
   updated: '',
   comments: new List(),
+  content: '',
 })
 
 export default class Issue extends _Issue {
@@ -34,6 +35,7 @@ export default class Issue extends _Issue {
       comment_count: issue.comment_count,
       created: issue.created,
       updated: issue.updated,
+      content: issue.content,
       comments,
     })
   }
