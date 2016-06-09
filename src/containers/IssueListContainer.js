@@ -30,6 +30,7 @@ class IssueListContainer extends Component {
     return (
       <div className={styles.base}>
         IssueListContainer!!!
+        <Link to="/new">Create Issue</Link>
         <IssueList
           issues={issues}
           onClickTitle={this.onClickTitle.bind(this)}
