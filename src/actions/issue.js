@@ -6,6 +6,7 @@ import Issue from '../lib/records/Issue'
 
 const Actions = {
   SET_ISSUES: 'issue/set_issues',
+  SET_LOADING: 'issue/set_loading',
 }
 
 export default Actions
@@ -33,13 +34,22 @@ function setIssues(issues) {
   }
 }
 
+function setLoading(loading) {
+  return {
+    type: Actions.SET_LOADING,
+    loading,
+  }
+}
+
 export function findIssues() {
   return async(dispatch) => {
+    dispatch(setLoading(true))
     try {
       const issues = await findIssuesRequest()
       dispatch(setIssues(issues))
     } catch (error) {
       console.log("error", error)
     }
+    dispatch(setLoading(false))
   }
 }

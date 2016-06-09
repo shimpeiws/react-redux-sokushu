@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Loader from 'react-loader'
 
 import { findIssues } from '../actions/issue'
 
@@ -15,10 +16,7 @@ class IssueListContainer extends Component {
   }
 
   init() {
-    try {
-      this.props.findIssues()
-    } catch(error) {
-    }
+    this.props.findIssues()
   }
 
   onClickTitle(issue) {
@@ -26,14 +24,15 @@ class IssueListContainer extends Component {
   }
 
   render() {
-    const { issues } = this.props
+    const { issues, issueListManager } = this.props
     return (
       <div className={styles.base}>
-        IssueListContainer!!!
-        <IssueList
-          issues={issues}
-          onClickTitle={this.onClickTitle.bind(this)}
-        />
+        <Loader loaded={!issueListManager.loading}>
+          <IssueList
+            issues={issues}
+            onClickTitle={this.onClickTitle.bind(this)}
+          />
+        </Loader>
       </div>
     )
   }
@@ -46,6 +45,7 @@ IssueListContainer.contextTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     issues: state.issue.issueList,
+    issueListManager: state.issue.issueListManager,
   }
 }
 

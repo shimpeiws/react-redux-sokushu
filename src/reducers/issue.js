@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { List } from 'immutable'
 
 import Issue from '../lib/records/Issue'
+import IssueListManager from '../lib/records/IssueListManager'
 import IssueDetailManager from '../lib/records/IssueDetailManager'
 
 import IssueActions from '../actions/issue'
@@ -29,6 +30,16 @@ function issueDetail(state = new Issue(), action) {
   return state
 }
 
+function issueListManager(state = new IssueListManager(), action) {
+  switch (action.type) {
+    case IssueActions.SET_LOADING:
+      return state.set('loading', action.loading)
+    default:
+      break // do nothing
+  }
+  return state
+}
+
 function issueDetailManager(state = new IssueDetailManager(), action) {
   switch (action.type) {
     case IssueDetailActions.SET_TITLE_EDITING:
@@ -44,5 +55,6 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
 export default combineReducers({
   issueList,
   issueDetail,
+  issueListManager,
   issueDetailManager,
 })
