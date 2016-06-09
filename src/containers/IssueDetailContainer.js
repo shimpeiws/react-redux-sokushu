@@ -58,6 +58,7 @@ class IssueDetailContainer extends Component {
     const { issueDetail, issueDetailManager } = this.props
     return (
       <div className={styles.base}>
+        <Link to="/">List Page</Link>
         <Loader loaded={!issueDetailManager.loading}>
           <IssueDetailHeader
             issue={issueDetail}
