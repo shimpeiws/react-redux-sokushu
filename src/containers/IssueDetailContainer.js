@@ -26,10 +26,7 @@ class IssueDetailContainer extends Component {
   }
 
   init() {
-    try {
-      this.props.findIssueDetail(this.props.params.id)
-    } catch(error) {
-    }
+    this.props.findIssueDetail(this.props.params.id)
   }
 
   onClickCommentSave(comment) {

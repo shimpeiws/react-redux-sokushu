@@ -24,7 +24,8 @@ class IssueListContainer extends Component {
   }
 
   render() {
-    const { issues, issueListManager } = this.props
+    const { issues, issueManager, issueListManager } = this.props
+    console.log("issueManager", issueManager)
     return (
       <div className={styles.base}>
         <Loader loaded={!issueListManager.loading}>
@@ -45,6 +46,7 @@ IssueListContainer.contextTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     issues: state.issue.issueList,
+    issueManager: state.issue.issueManager,
     issueListManager: state.issue.issueListManager,
   }
 }

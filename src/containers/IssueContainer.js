@@ -3,7 +3,19 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import {
+  findInitialData,
+} from '../actions/issue'
+
 class IssueContainer extends Component {
+  componentDidMount() {
+    this.init()
+  }
+
+  init() {
+    this.props.findInitialData()
+  }
+
   render() {
     return (
       <div>
@@ -18,7 +30,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch)
+  return bindActionCreators({
+    findInitialData,
+  }, dispatch)
 }
 
 export default connect(
