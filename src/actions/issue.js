@@ -94,7 +94,7 @@ export function findInitialData() {
     try {
       const data = await Promise.all([
         findUsersRequest(),
-        findLabelsRequest()
+        findLabelsRequest(),
       ])
       dispatch(setUsers(data[0]))
       dispatch(setLabels(data[1]))
