@@ -104,11 +104,13 @@ export function findInitialData() {
   }
 }
 
-export function findIssues() {
+export function findIssues(params, options={}) {
   return async(dispatch) => {
-    dispatch(setLoading(true))
+    const skipLoading = !!options.skipLoading
+
+    if (!skipLoading) { dispatch(setLoading(true)) }
     try {
-      const issues = await findIssuesRequest()
+      const issues = await findIssuesRequest(params)
       dispatch(setIssues(issues))
     } catch (error) {
       console.log("error", error)

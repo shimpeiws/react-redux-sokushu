@@ -1,8 +1,11 @@
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Loader from 'react-loader'
+
+import { STATE } from '../lib/records/Issue'
 
 import { findIssues } from '../actions/issue'
 
@@ -16,12 +19,47 @@ class IssueListContainer extends Component {
     this.init()
   }
 
-  init() {
-    this.props.findIssues()
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(this.props.params, nextProps.params)) {
+      this.props.findIssues(nextProps.params, { skipLoading: true })
+    }
   }
 
   onClickRow(issue) {
     this.context.router.push(`/${issue.id}`)
+  }
+
+  onClickOpen() {
+    this.search({ status: STATE.OPEN })
+  }
+
+  onClickClose() {
+    this.search({ status: STATE.CLOSE })
+  }
+
+  init() {
+    this.props.findIssues(this.searchParams())
+  }
+
+  searchParams() {
+    const params = this.props.params
+    params.status = params.status || STATE.OPEN
+    return params
+  }
+
+  search(params = {}) {
+    let query = {}
+    _.each(_.extend({}, this.searchParams(), params), (value, key) => {
+      query[key] = value
+    })
+    this.pushQuery(query)
+  }
+
+  pushQuery(query) {
+    this.context.router.push({
+      pathname: '/',
+      query: query
+    })
   }
 
   render() {
@@ -30,7 +68,10 @@ class IssueListContainer extends Component {
     return (
       <div className={styles.base}>
         <Loader loaded={!issueListManager.loading}>
-          <IssueListHeader />
+          <IssueListHeader
+            onClickOpen={this.onClickOpen.bind(this)}
+            onClickClose={this.onClickClose.bind(this)}
+          />
           <IssueList
             issues={issues}
             onClickRow={this.onClickRow.bind(this)}
@@ -47,6 +88,7 @@ IssueListContainer.contextTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    params: ownProps.location.query,
     issues: state.issue.issueList,
     issueManager: state.issue.issueManager,
     issueListManager: state.issue.issueListManager,

@@ -8,8 +8,8 @@ class IssueListHeader extends Component {
     return (
       <div styleName="base">
         <div styleName="left">
-          <span styleName="item">Open</span>
-          <span styleName="item">Close</span>
+          <span styleName="item" onClick={this.props.onClickOpen}>Open</span>
+          <span styleName="item" onClick={this.props.onClickClose}>Close</span>
         </div>
         <div styleName="right">
           <span styleName="item">Assignee</span>
