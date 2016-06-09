@@ -10,7 +10,6 @@ class IssueList extends Component {
 
     return(
       <div styleName="base">
-        Issue List!!!
         <div styleName="header">
           <div styleName="row">id</div>
           <div styleName="row-3">title</div>
