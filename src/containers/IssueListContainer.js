@@ -19,7 +19,7 @@ class IssueListContainer extends Component {
     this.props.findIssues()
   }
 
-  onClickTitle(issue) {
+  onClickRow(issue) {
     this.context.router.push(`/${issue.id}`)
   }
 
@@ -31,7 +31,7 @@ class IssueListContainer extends Component {
         <Loader loaded={!issueListManager.loading}>
           <IssueList
             issues={issues}
-            onClickTitle={this.onClickTitle.bind(this)}
+            onClickRow={this.onClickRow.bind(this)}
           />
         </Loader>
       </div>

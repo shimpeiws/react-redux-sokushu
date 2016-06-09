@@ -25,7 +25,7 @@ class IssueList extends Component {
             return (<IssueListItem
               key={issue.id}
               issue={issue}
-              onClickTitle={this.props.onClickTitle.bind(null, issue)}
+              onClickRow={this.props.onClickRow.bind(null, issue)}
             />)
           })
         }
