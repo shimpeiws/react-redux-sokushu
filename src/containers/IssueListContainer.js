@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import Loader from 'react-loader'
 
 import { STATE } from '../lib/records/Issue'
+import {SORT_TYPE} from '../lib/records/IssueListManager'
 
 import { findIssues } from '../actions/issue'
 
@@ -73,9 +74,15 @@ class IssueListContainer extends Component {
     })
   }
 
+  onChangeSortType(sortTypeKey) {
+    this.search({
+      sort_type: sortTypeKey
+    })
+  }
+
   render() {
     const { params, issues, issueManager, issueListManager } = this.props
-    const { assignee_id: userFilterId, label_ids: labelFilterId } = params
+    const { assignee_id: userFilterId, label_ids: labelFilterId, sort_type: sortTypeKey } = params
     console.log("issueManager", issueManager)
     return (
       <div className={styles.base}>
@@ -84,10 +91,12 @@ class IssueListContainer extends Component {
             issueManager={issueManager}
             userFilterId={userFilterId}
             labelFilterId={labelFilterId}
+            sortTypeKey={sortTypeKey || SORT_TYPE.UPDATED.key}
             onClickOpen={this.onClickOpen.bind(this)}
             onClickClose={this.onClickClose.bind(this)}
             onChangeAssigneeFilter={this.onChangeAssigneeFilter.bind(this)}
             onChangeLabelFilter={this.onChangeLabelFilter.bind(this)}
+            onChangeSortType={this.onChangeSortType.bind(this)}
           />
           <IssueList
             issues={issues}
