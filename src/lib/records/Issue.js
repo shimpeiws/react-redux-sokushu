@@ -1,6 +1,7 @@
 import { List, Record } from 'immutable'
 
 import Comment from './Comment'
+import User from './User'
 
 export const STATE = {
   CLOSE: 'close',
@@ -15,6 +16,8 @@ const _Issue = Record({
   created: '',
   updated: '',
   comments: new List(),
+  content: '',
+  assignee: new User(),
 })
 
 export default class Issue extends _Issue {
@@ -34,7 +37,9 @@ export default class Issue extends _Issue {
       comment_count: issue.comment_count,
       created: issue.created,
       updated: issue.updated,
+      content: issue.content,
       comments,
+      assignee: issue.assignee ? User.fromJS(issue.assignee) : new User(),
     })
   }
 }

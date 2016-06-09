@@ -7,6 +7,7 @@ import Loader from 'react-loader'
 import IssueDetailHeader from '../components/IssueDetailHeader'
 import IssueCommentList from '../components/IssueCommentList'
 import IssueCommentForm from '../components/IssueCommentForm'
+import IssueDescription from '../components/IssueDescription'
 
 import {
   findIssueDetail,
@@ -25,10 +26,7 @@ class IssueDetailContainer extends Component {
   }
 
   init() {
-    try {
-      this.props.findIssueDetail(this.props.params.id)
-    } catch(error) {
-    }
+    this.props.findIssueDetail(this.props.params.id)
   }
 
   onClickCommentSave(comment) {
@@ -52,6 +50,10 @@ class IssueDetailContainer extends Component {
     this.props.updateIssue(issue)
   }
 
+  onClickChangeStatus(issue) {
+    this.props.updateIssue(issue)
+  }
+
   render() {
     const { issueDetail, issueDetailManager } = this.props
     return (
@@ -64,13 +66,18 @@ class IssueDetailContainer extends Component {
             onClickTitleSave={this.onClickTitleSave.bind(this)}
           />
           <div className={styles.main}>
+            <IssueDescription
+              issue={issueDetail}
+            />
             <IssueCommentList
               comments={issueDetail.comments}
               onClickSave={this.onClickCommentSave.bind(this)}
               onClickDelete={this.onClickCommentDelete.bind(this)}
             />
             <IssueCommentForm
+              issue={issueDetail}
               onClickComment={this.onClickCommentSave.bind(this)}
+              onClickChangeStatus={this.onClickChangeStatus.bind(this)}
             />
           </div>
         </Loader>

@@ -18,9 +18,7 @@ class IssueDetailHeader extends Component {
   }
 
   onClickTitleSave() {
-    console.log("onClickTitleSave!!!")
     const newIssue = this.props.issue.set('title', this.state.title)
-    console.log("newIssue", newIssue)
     this.props.onClickTitleSave(newIssue)
   }
 
@@ -73,7 +71,9 @@ class IssueDetailHeader extends Component {
         </div>
         <div styleName="assign-label-wrapper">
           <div styleName="items">
-            User Name Here
+            {
+              issue.assignee.id ? (issue.assignee.name) : ("No Assignee")
+            }
           </div>
           <div styleName="items">
             <span>label1</span><span>label2</span>

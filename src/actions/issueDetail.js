@@ -33,6 +33,7 @@ async function updateIssueRequest(issue) {
     issue: {
       id: issue.id,
       title: issue.title,
+      status: issue.status,
     }
   }
 
