@@ -61,15 +61,33 @@ class IssueListContainer extends Component {
     })
   }
 
+  onChangeAssigneeFilter(user) {
+    this.search({
+      assignee_id: user === null ? null : user.id
+    })
+  }
+
+  onChangeLabelFilter(label) {
+    this.search({
+      label_ids: label === null ? null : label.id
+    })
+  }
+
   render() {
-    const { issues, issueManager, issueListManager } = this.props
+    const { params, issues, issueManager, issueListManager } = this.props
+    const { assignee_id: userFilterId, label_ids: labelFilterId } = params
     console.log("issueManager", issueManager)
     return (
       <div className={styles.base}>
         <Loader loaded={!issueListManager.loading}>
           <IssueListHeader
+            issueManager={issueManager}
+            userFilterId={userFilterId}
+            labelFilterId={labelFilterId}
             onClickOpen={this.onClickOpen.bind(this)}
             onClickClose={this.onClickClose.bind(this)}
+            onChangeAssigneeFilter={this.onChangeAssigneeFilter.bind(this)}
+            onChangeLabelFilter={this.onChangeLabelFilter.bind(this)}
           />
           <IssueList
             issues={issues}
