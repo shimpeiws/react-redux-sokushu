@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Loader from 'react-loader'
@@ -68,7 +67,6 @@ class IssueListContainer extends Component {
     return (
       <div className={styles.base}>
         <Loader loaded={!issueListManager.loading}>
-          <Link to="/new">Create Issue</Link>
           <IssueListHeader
             onClickOpen={this.onClickOpen.bind(this)}
             onClickClose={this.onClickClose.bind(this)}
