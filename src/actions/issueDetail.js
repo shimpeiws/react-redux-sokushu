@@ -10,6 +10,8 @@ const Actions = {
   SET_COMMENTS: 'issue_detail/set_comments',
   SET_TITLE_EDITING: 'issue_detail/set_title_editing',
   SET_LOADING: 'issue_detail/set_loading',
+  SET_SHOW_USERS_MODAL: 'issue_detail/set_show_users_modal',
+  SET_SHOW_LABELS_MODAL: 'issue_detail/set_show_labels_modal',
 }
 
 export default Actions
@@ -34,6 +36,7 @@ async function updateIssueRequest(issue) {
       id: issue.id,
       title: issue.title,
       status: issue.status,
+      assignee_id: issue.assignee.id
     }
   }
 
@@ -196,5 +199,19 @@ export function updateIssue(issueDetail) {
     } catch (error) {
       console.log("error", error)
     }
+  }
+}
+
+export function setShowUsersModal(show) {
+  return {
+    type: Actions.SET_SHOW_USERS_MODAL,
+    show,
+  }
+}
+
+export function setShowLabelsModal(show) {
+  return {
+    type: Actions.SET_SHOW_LABELS_MODAL,
+    show,
   }
 }

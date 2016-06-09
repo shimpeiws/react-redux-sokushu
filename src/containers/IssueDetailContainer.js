@@ -16,6 +16,7 @@ import {
   deleteComment,
   changeTitleEditing,
   updateIssue,
+  setShowUsersModal,
 } from '../actions/issueDetail'
 
 import styles from './IssueDetailContainer.scss'
@@ -54,16 +55,28 @@ class IssueDetailContainer extends Component {
     this.props.updateIssue(issue)
   }
 
+  onAssigneeSelected(issue) {
+    this.props.updateIssue(issue)
+  }
+
+  onChangeShowUsersModal(show) {
+    this.props.setShowUsersModal(show)
+  }
+
   render() {
-    const { issueDetail, issueDetailManager } = this.props
+    const { issueDetail, issueDetailManager, issueManager } = this.props
     return (
       <div className={styles.base}>
         <Loader loaded={!issueDetailManager.loading}>
           <IssueDetailHeader
             issue={issueDetail}
+            issueManager={issueManager}
+            issueDetailManager={issueDetailManager}
             isTitleEditing={issueDetailManager.isTitleEditing}
             onClickTitleEdit={this.onClickTitleEdit.bind(this)}
             onClickTitleSave={this.onClickTitleSave.bind(this)}
+            onAssigneeSelected={this.onAssigneeSelected.bind(this)}
+            onChangeShowUsersModal={this.onChangeShowUsersModal.bind(this)}
           />
           <div className={styles.main}>
             <IssueDescription
@@ -94,6 +107,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     issueDetail: state.issue.issueDetail,
     issueDetailManager: state.issue.issueDetailManager,
+    issueManager: state.issue.issueManager,
   }
 }
 
@@ -105,6 +119,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteComment,
     changeTitleEditing,
     updateIssue,
+    setShowUsersModal,
   }, dispatch)
 }
 

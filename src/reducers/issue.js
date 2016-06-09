@@ -61,6 +61,10 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
       return state.set('isTitleEditing', action.editing)
     case IssueDetailActions.SET_LOADING:
       return state.set('loading', action.loading)
+    case IssueDetailActions.SET_SHOW_USERS_MODAL:
+      return state.set('showUsersModal', action.show)
+    case IssueDetailActions.SET_SHOW_LABELS_MODAL:
+      return state.set('showLabelsModal', action.show)
     default:
       break // do nothing
   }

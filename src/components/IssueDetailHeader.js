@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import CSSModules from 'react-css-modules'
+import Modal from 'react-modal'
 
 import { STATE } from './../lib/records/Issue'
 
@@ -22,8 +23,21 @@ class IssueDetailHeader extends Component {
     this.props.onClickTitleSave(newIssue)
   }
 
+  isSelectedUser(user) {
+    return this.props.issue.assignee !== null && user.id === this.props.issue.assignee.id
+  }
+
+  onAssigneeSelected(user, e) {
+    const newIssue = this.props.issue.set('assignee', user)
+    this.props.onAssigneeSelected(newIssue)
+  }
+
+  onChangeShowUsersModal(show) {
+    this.props.onChangeShowUsersModal(show)
+  }
+
   render() {
-    const { issue } = this.props
+    const { issue, issueManager, issueDetailManager } = this.props
     return (
       <div styleName="base">
         <div>
@@ -70,10 +84,33 @@ class IssueDetailHeader extends Component {
           </div>
         </div>
         <div styleName="assign-label-wrapper">
-          <div styleName="items">
+          <div styleName="items"
+               onClick={this.onChangeShowUsersModal.bind(this, true)}
+          >
             {
               issue.assignee.id ? (issue.assignee.name) : ("No Assignee")
             }
+            <Modal
+              isOpen={issueDetailManager.showUsersModal}
+            >
+              <ul>
+                <li
+                  onClick={this.onChangeShowUsersModal.bind(this, false)}
+                >close</li>
+                {
+                  issueManager.users.map((user) => {
+                    return (
+                      <li
+                        key={user.id}
+                        onClick={this.onAssigneeSelected.bind(this, user)}
+                      >{user.name}
+                        { this.isSelectedUser(user) ? <span> selected!</span> : (null)}
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </Modal>
           </div>
           <div styleName="items">
             <span>label1</span><span>label2</span>
