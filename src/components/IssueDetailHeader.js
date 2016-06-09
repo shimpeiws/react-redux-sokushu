@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react'
 import CSSModules from 'react-css-modules'
-import Modal from 'react-modal'
 
 import { STATE } from './../lib/records/Issue'
+
+import Modal from './SelectModal'
 
 import styles from './IssueDetailHeader.scss'
 
@@ -113,17 +114,19 @@ class IssueDetailHeader extends Component {
               isOpen={issueDetailManager.showUsersModal}
             >
               <ul>
-                <li
+                <div
+                  styleName="modal-close-btn"
                   onClick={this.onChangeShowUsersModal.bind(this, false)}
-                >close</li>
+                >close</div>
                 {
                   issueManager.users.map((user) => {
                     return (
                       <li
+                        styleName="modal-item"
                         key={user.id}
                         onClick={this.onAssigneeSelected.bind(this, user)}
                       >{user.name}
-                        { this.isSelectedUser(user) ? <span> selected!</span> : (null)}
+                        { this.isSelectedUser(user) ? <i styleName="modal-item-check" className="fa fa-check-circle-o" /> : (null)}
                       </li>
                     )
                   })
@@ -139,17 +142,19 @@ class IssueDetailHeader extends Component {
               isOpen={issueDetailManager.showLabelsModal}
             >
               <ul>
-                <li
+                <div
+                  styleName="modal-close-btn"
                   onClick={this.onChangeShowLabelsModal.bind(this, false)}
-                >close</li>
+                >close</div>
                 {
                   issueManager.labels.map((label) => {
                     return (
                       <li
+                        styleName="modal-item"
                         key={label.id}
                         onClick={this.onLabelSelected.bind(this, label)}
                       >{label.name}
-                        { this.isSelectedLabel(label) ? <span> selected!</span> : (null)}
+                        { this.isSelectedLabel(label) ? <i styleName="modal-item-check" className="fa fa-check-circle-o" /> : (null)}
                       </li>
                     )
                   })
