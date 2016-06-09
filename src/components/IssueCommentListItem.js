@@ -49,17 +49,19 @@ class IssueCommentListItem extends Component {
           <div styleName="header-date">
             {comment.updated}
           </div>
-          <div
-            styleName="header-icon"
-            onClick={this.onClickEdit.bind(this)}
-          >
-            <i className="fa fa-pencil" />
-          </div>
-          <div
-            styleName="header-icon"
-            onClick={this.onClickDelete.bind(this)}
-          >
-            <i className="fa fa-trash" />
+          <div styleName="actions">
+            <span
+              styleName="header-icon"
+              onClick={this.onClickEdit.bind(this)}
+            >
+              <i className="fa fa-pencil" />
+            </span>
+            <span
+              styleName="header-icon"
+              onClick={this.onClickDelete.bind(this)}
+            >
+              <i className="fa fa-trash" />
+            </span>
           </div>
         </div>
         <div styleName="main">
