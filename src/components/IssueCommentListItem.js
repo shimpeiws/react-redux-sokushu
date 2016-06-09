@@ -15,7 +15,7 @@ class IssueCommentListItem extends Component {
   }
 
   onClickEdit() {
-    this.setState({ isEditing: true })
+    this.setState({ isEditing: !this.state.isEditing })
   }
 
   onClickCancel() {
