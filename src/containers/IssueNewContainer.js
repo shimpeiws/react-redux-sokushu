@@ -36,6 +36,10 @@ class IssueNewContainer extends Component {
 
   onCreateIssue() {
     const issueNewManager = this.props.issueNewManager
+    const issue = issueNewManager.issue
+    if (!issue.isValidTitle() || !issue.isValidContent()) {
+      return
+    }
     if (!issueNewManager.loading) {
       this.props.createIssue(issueNewManager.issue, this.context.router)
     }
