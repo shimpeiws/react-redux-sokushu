@@ -17,6 +17,10 @@ function initIssue(issue) {
   return Issue.fromJS(issue)
 }
 
+export function initializeIssue() {
+  return setIssue(new Issue())
+}
+
 export function setIssue(issue) {
   return {
     type: Actions.SET_ISSUE,

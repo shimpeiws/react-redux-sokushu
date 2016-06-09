@@ -9,6 +9,7 @@ import Issue from '../lib/records/Issue'
 import {
   setIssue,
   createIssue,
+  initializeIssue,
 } from '../actions/issueNew'
 
 import IssueNewHeader from '../components/IssueNewHeader'
@@ -16,6 +17,14 @@ import IssueNewHeader from '../components/IssueNewHeader'
 import styles from './IssueNewContainer.scss'
 
 class IssueNewContainer extends Component {
+
+  componentDidMount() {
+    this.init()
+  }
+
+  init() {
+    this.props.initializeIssue()
+  }
 
   onChangeTitle(title) {
     this.props.setIssue(this.props.issueNewManager.issue.set('title', title))
@@ -64,6 +73,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setIssue,
     createIssue,
+    initializeIssue,
   }, dispatch)
 }
 
