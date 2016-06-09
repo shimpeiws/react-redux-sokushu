@@ -24,12 +24,13 @@ export function setIssue(issue) {
   }
 }
 
-export function createIssue(issue) {
+export function createIssue(issue, router) {
   return async(dispatch) => {
     console.log('create Issue!')
     dispatch(setLoading(true))
     try {
-      await createIssueRequest(issue)
+      const newIssue = await createIssueRequest(issue)
+      router.push(`/${newIssue.id}`)
     } catch (error) {
       console.log("error", error)
     }
