@@ -2,6 +2,7 @@ import { List, Record } from 'immutable'
 
 import Comment from './Comment'
 import User from './User'
+import Label from './Label'
 
 export const STATE = {
   CLOSE: 'close',
@@ -24,10 +25,17 @@ const _Issue = Record({
 export default class Issue extends _Issue {
   static fromJS(issue = {}) {
     let comments = new List()
+    let labels = new List()
 
     if (issue.comments) {
       comments = new List(issue.comments.map((comment) => {
         return Comment.fromJS(comment)
+      }))
+    }
+
+    if (issue.labels) {
+      labels = new List(issue.labels.map((label) => {
+        return Label.fromJS(label)
       }))
     }
 
@@ -40,6 +48,7 @@ export default class Issue extends _Issue {
       updated: issue.updated,
       content: issue.content,
       comments,
+      labels,
       assignee: issue.assignee ? User.fromJS(issue.assignee) : new User(),
     })
   }
