@@ -3,6 +3,10 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import {
+  setIssueTitle,
+} from '../actions/issueNew'
+
 import IssueNewHeader from '../components/IssueNewHeader'
 
 import styles from './IssueNewContainer.scss'
@@ -10,7 +14,7 @@ import styles from './IssueNewContainer.scss'
 class IssueNewContainer extends Component {
 
   onChangeTitle(title) {
-    // TODO: onChangeTitle
+    this.props.setIssueTitle(title)
   }
 
   render() {
@@ -38,7 +42,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch)
+  return bindActionCreators({
+    setIssueTitle,
+  }, dispatch)
 }
 
 export default connect(

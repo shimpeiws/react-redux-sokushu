@@ -7,6 +7,7 @@ import IssueNewManager from '../lib/records/IssueNewManager'
 
 import IssueActions from '../actions/issue'
 import IssueDetailActions from '../actions/issueDetail'
+import IssueNewActions from '../actions/issueNew'
 
 function issueList(state = new List(), action) {
   switch (action.type) {
@@ -44,6 +45,8 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
 
 function issueNewManager(state = new IssueNewManager(), action) {
   switch (action.type) {
+    case IssueNewActions.SET_ISSUE_TITLE:
+      return state.set('title', action.title)
     default:
       break // do nothing
   }
