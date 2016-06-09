@@ -25,6 +25,7 @@ class IssueNewHeader extends Component {
     return (
       <div styleName="base">
         <div>
+          <span>title:</span>
           <input
             type="text"
             value={issue.title}
@@ -33,6 +34,7 @@ class IssueNewHeader extends Component {
           <button onClick={this.onCreateIssue.bind(this)}>Create</button>
         </div>
         <div>
+          <span>content:</span>
           <textarea
             type="text"
             value={issue.content}
