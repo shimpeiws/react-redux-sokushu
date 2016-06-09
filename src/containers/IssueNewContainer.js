@@ -21,6 +21,7 @@ IssueNewContainer.contextTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    issueNewManager: state.issue.issueNewManager,
   }
 }
 

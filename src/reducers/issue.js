@@ -3,6 +3,7 @@ import { List } from 'immutable'
 
 import Issue from '../lib/records/Issue'
 import IssueDetailManager from '../lib/records/IssueDetailManager'
+import IssueNewManager from '../lib/records/IssueNewManager'
 
 import IssueActions from '../actions/issue'
 import IssueDetailActions from '../actions/issueDetail'
@@ -41,8 +42,18 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
   return state
 }
 
+function issueNewManager(state = new IssueNewManager(), action) {
+  switch (action.type) {
+    default:
+      break // do nothing
+  }
+  return state
+}
+
+
 export default combineReducers({
   issueList,
   issueDetail,
   issueDetailManager,
+  issueNewManager,
 })
