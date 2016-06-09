@@ -94,17 +94,19 @@ class IssueListHeader extends Component {
             isOpen={showAssigneeModal}
           >
             <ul>
-              <li
+              <div
+                styleName="modal-close-btn"
                 onClick={this.onChangeAssigneeModal.bind(this, false)}
-              >close</li>
+              >close</div>
               {
                 issueManager.users.map((user) => {
                   return (
                     <li
                       key={user.id}
+                      styleName="modal-item"
                       onClick={this.onChangeAssigneeFilter.bind(this, user)}
                     >{user.name}
-                      { this.isAssigneeFilter(user) ? <span> selected!</span> : (null)}
+                      { this.isAssigneeFilter(user) ? <i styleName="modal-item-check" className="fa fa-check-circle-o" /> : (null)}
                     </li>
                   )
                 })
@@ -118,17 +120,19 @@ class IssueListHeader extends Component {
             isOpen={showLabelModal}
           >
             <ul>
-              <li
+              <div
+                styleName="modal-close-btn"
                 onClick={this.onChangeLabelModal.bind(this, false)}
-              >close</li>
+              >close</div>
               {
                 issueManager.labels.map((label) => {
                   return (
                     <li
                       key={label.id}
+                      styleName="modal-item"
                       onClick={this.onChangeLabelFilter.bind(this, label)}
                     >{label.name}
-                      { this.isLabelFilter(label) ? <span> selected!</span> : (null)}
+                      { this.isLabelFilter(label) ? <i styleName="modal-item-check" className="fa fa-check-circle-o" /> : (null)}
                     </li>
                   )
                 })
@@ -142,17 +146,19 @@ class IssueListHeader extends Component {
             isOpen={showSortModal}
           >
             <ul>
-              <li
+              <div
+                styleName="modal-close-btn"
                 onClick={this.onChangeSortModal.bind(this, false)}
-              >close</li>
+              >close</div>
               {
                 this.sortTypes().map((sortType) => {
                   return (
                     <li
                       key={sortType.key}
+                      styleName="modal-item"
                       onClick={this.onChangeSortType.bind(this, sortType)}
                     >{sortType.name}
-                      { this.isSortType(sortType) ? <span> selected!</span> : (null)}
+                      { this.isSortType(sortType) ? <i styleName="modal-item-check" className="fa fa-check-circle-o" /> : (null)}
                     </li>
                   )
                 })
