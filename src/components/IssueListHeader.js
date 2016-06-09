@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 import CSSModules from 'react-css-modules'
 import Modal from 'react-modal'
 
+import {SORT_TYPE} from '../lib/records/IssueListManager'
+
 import styles from './IssueListHeader.scss'
 
 class IssueListHeader extends Component {
@@ -11,6 +13,7 @@ class IssueListHeader extends Component {
     this.state = {
       showAssigneeModal: false,
       showLabelModal: false,
+      showSortModal: false,
     }
   }
 
@@ -20,6 +23,10 @@ class IssueListHeader extends Component {
 
   isLabelFilter(label) {
     return label.id === parseInt(this.props.labelFilterId)
+  }
+
+  isSortType(sortType) {
+    return sortType.key === this.props.sortTypeKey
   }
 
   onChangeAssigneeFilter(user) {
@@ -40,6 +47,11 @@ class IssueListHeader extends Component {
     }
   }
 
+  onChangeSortType(sortType) {
+    this.props.onChangeSortType(sortType.key)
+    this.onChangeSortModal(false)
+  }
+
   onChangeAssigneeModal(show) {
     this.setState({
       showAssigneeModal: show,
@@ -52,9 +64,21 @@ class IssueListHeader extends Component {
     })
   }
 
+  onChangeSortModal(show) {
+    this.setState({
+      showSortModal: show,
+    })
+  }
+
+  sortTypes() {
+    return Object.keys(SORT_TYPE).map((key) => {
+      return SORT_TYPE[key]
+    })
+  }
+
   render() {
     const {issueManager} = this.props
-    const {showAssigneeModal, showLabelModal} = this.state
+    const {showAssigneeModal, showLabelModal, showSortModal} = this.state
     return (
       <div styleName="base">
         <div styleName="left">
@@ -110,7 +134,30 @@ class IssueListHeader extends Component {
               }
             </ul>
           </Modal>
-          <span styleName="item">Sort</span>
+          <span styleName="item"
+                onClick={this.onChangeSortModal.bind(this, true)}
+          >Sort</span>
+          <Modal
+            isOpen={showSortModal}
+          >
+            <ul>
+              <li
+                onClick={this.onChangeSortModal.bind(this, false)}
+              >close</li>
+              {
+                this.sortTypes().map((sortType) => {
+                  return (
+                    <li
+                      key={sortType.key}
+                      onClick={this.onChangeSortType.bind(this, sortType)}
+                    >{sortType.name}
+                      { this.isSortType(sortType) ? <span> selected!</span> : (null)}
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </Modal>
           <span styleName="item"><Link to="/new">Create Issue</Link></span>
         </div>
       </div>
