@@ -40,7 +40,7 @@
 }
 
 .close-issue-button {
-  width: 100px;
+  padding: 0 15px;
   height: 30px;
   line-height: 30px;
   font-size: 15px;
@@ -48,8 +48,7 @@
   border-radius: 3px;
   text-align: center;
   margin-right: 15px;
-  background: red;
-  color: white;
+  background: #eee;
   cursor: pointer;
   display: block;
 }
@@ -57,4 +56,19 @@
 .comment-button {
   composes: close-issue-button;
   background: green;
+  color: white;
+}
+
+textarea, input {
+  width: 100%;
+  border-radius: 3px;
+  background-color: #fff;
+  border: solid 1px #e3e3e3;
+  padding: 10px;
+  box-sizing: border-box;
+  display: block;
+}
+
+input {
+  padding: 5px;
 }

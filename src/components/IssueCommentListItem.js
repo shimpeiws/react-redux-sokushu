@@ -69,15 +69,19 @@ class IssueCommentListItem extends Component {
                   value={this.state.editingContent}
                   onChange={this.onChangeContent.bind(this)}
                 />
-                <div
-                  onClick={this.onClickCancel.bind(this)}
-                >
-                  Cancel
-                </div>
-                <div
-                  onClick={this.onClickSave.bind(this)}
-                >
-                  Save
+                <div styleName="buttons">
+                  <div
+                    styleName="comment-button"
+                    onClick={this.onClickSave.bind(this)}
+                  >
+                    Save
+                  </div>
+                  <div
+                    styleName="cancel-button"
+                    onClick={this.onClickCancel.bind(this)}
+                  >
+                    Cancel
+                  </div>
                 </div>
               </div>
             ) : (

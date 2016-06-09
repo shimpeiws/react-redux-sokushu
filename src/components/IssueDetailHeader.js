@@ -59,7 +59,7 @@ class IssueDetailHeader extends Component {
     const { issue, issueManager, issueDetailManager } = this.props
     return (
       <div styleName="base">
-        <div>
+        <div styleName={issue.status === STATE.OPEN ? 'state-open' : 'state-close'}>
           {
             issue.status === STATE.OPEN ?
             <i className="fa fa-check-circle-o" /> :
