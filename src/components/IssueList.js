@@ -15,6 +15,7 @@ class IssueList extends Component {
           <div styleName="row">id</div>
           <div styleName="row-3">title</div>
           <div styleName="row-2">status</div>
+          <div styleName="row">assignee</div>
           <div styleName="row">comment count</div>
           <div styleName="row-3">created</div>
           <div styleName="row-3">updated</div>
