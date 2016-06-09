@@ -21,11 +21,14 @@
   font-weight: 400;
 }
 
-.header-icon {
-  flex: 1;
-  cursor: pointer;
+.actions {
+  flex: 2;
   text-align: right;
+}
 
+.header-icon {
+  cursor: pointer;
+  margin-left: 15px;
 }
 
 .main {
@@ -35,6 +38,7 @@
 
   textarea {
     width: 100%;
+    font-size: 14px;
     border-radius: 3px;
     background-color: #fff;
     border: solid 1px #e3e3e3;

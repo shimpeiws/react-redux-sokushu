@@ -47,6 +47,7 @@ class IssueCommentForm extends Component {
               type="text"
               value={this.state.userName}
               onChange={this.onChangeUserName.bind(this)}
+              disabled={issue.status === STATE.OPEN ? false : true}
             />
           </span>
         </div>
@@ -58,6 +59,7 @@ class IssueCommentForm extends Component {
             styleName="comment-text"
             value={this.state.editingContent}
             onChange={this.onChangeContent.bind(this)}
+            disabled={issue.status === STATE.OPEN ? false : true}
           />
         </div>
         <div styleName="footer">
@@ -71,7 +73,7 @@ class IssueCommentForm extends Component {
               styleName="close-issue-button"
               onClick={this.onClickChangeStatus.bind(this, STATE.OPEN)}
             >
-              Re Open Issue
+              Re-open Issue
             </div>)
           }
           <div
