@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react'
 import { Link } from 'react-router'
 import CSSModules from 'react-css-modules'
-import Modal from 'react-modal'
 
 import {SORT_TYPE} from '../lib/records/IssueListManager'
+
+import Modal from './SelectModal'
 
 import styles from './IssueListHeader.scss'
 
