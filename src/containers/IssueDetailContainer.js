@@ -52,6 +52,10 @@ class IssueDetailContainer extends Component {
     this.props.updateIssue(issue)
   }
 
+  onClickChangeStatus(issue) {
+    this.props.updateIssue(issue)
+  }
+
   render() {
     const { issueDetail, issueDetailManager } = this.props
     return (
@@ -70,7 +74,9 @@ class IssueDetailContainer extends Component {
               onClickDelete={this.onClickCommentDelete.bind(this)}
             />
             <IssueCommentForm
+              issue={issueDetail}
               onClickComment={this.onClickCommentSave.bind(this)}
+              onClickChangeStatus={this.onClickChangeStatus.bind(this)}
             />
           </div>
         </Loader>

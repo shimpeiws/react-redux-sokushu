@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import CSSModules from 'react-css-modules'
 
 import Comment from '../lib/records/Comment'
+import { STATE } from '../lib/records/Issue'
 
 import styles from './IssueCommentForm.scss'
 
@@ -19,6 +20,12 @@ class IssueCommentForm extends Component {
     this.props.onClickComment(comment)
   }
 
+  onClickChangeStatus(status) {
+    this.props.onClickChangeStatus(
+      this.props.issue.set('status', status)
+    )
+  }
+
   onChangeUserName(e) {
     this.setState({userName: e.target.value})
   }
@@ -28,6 +35,7 @@ class IssueCommentForm extends Component {
   }
 
   render() {
+    const { issue } = this.props
     return (
       <div styleName="base">
         <div styleName="header">
@@ -53,9 +61,19 @@ class IssueCommentForm extends Component {
           />
         </div>
         <div styleName="footer">
-          <div styleName="close-issue-button">
-            Close Issue
-          </div>
+          { issue.status === STATE.OPEN ? (
+            <div
+              styleName="close-issue-button"
+              onClick={this.onClickChangeStatus.bind(this, STATE.CLOSE)}
+            >
+              Close Issue
+            </div>) : (<div
+              styleName="close-issue-button"
+              onClick={this.onClickChangeStatus.bind(this, STATE.OPEN)}
+            >
+              Re Open Issue
+            </div>)
+          }
           <div
             styleName="comment-button"
             onClick={this.onClickComment.bind(this)}
