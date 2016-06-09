@@ -10,7 +10,6 @@ class IssueList extends Component {
 
     return(
       <div styleName="base">
-        Issue List!!!
         <div styleName="header">
           <div styleName="row">id</div>
           <div styleName="row-3">title</div>
@@ -25,7 +24,7 @@ class IssueList extends Component {
             return (<IssueListItem
               key={issue.id}
               issue={issue}
-              onClickTitle={this.props.onClickTitle.bind(null, issue)}
+              onClickRow={this.props.onClickRow.bind(null, issue)}
             />)
           })
         }

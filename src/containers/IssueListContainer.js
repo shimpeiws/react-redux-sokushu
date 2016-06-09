@@ -6,6 +6,7 @@ import Loader from 'react-loader'
 
 import { findIssues } from '../actions/issue'
 
+import IssueListHeader from '../components/IssueListHeader'
 import IssueList from '../components/IssueList'
 
 import styles from './IssueListContainer.scss'
@@ -19,7 +20,7 @@ class IssueListContainer extends Component {
     this.props.findIssues()
   }
 
-  onClickTitle(issue) {
+  onClickRow(issue) {
     this.context.router.push(`/${issue.id}`)
   }
 
@@ -30,9 +31,10 @@ class IssueListContainer extends Component {
       <div className={styles.base}>
         <Loader loaded={!issueListManager.loading}>
           <Link to="/new">Create Issue</Link>
+          <IssueListHeader />
           <IssueList
             issues={issues}
-            onClickTitle={this.onClickTitle.bind(this)}
+            onClickRow={this.onClickRow.bind(this)}
           />
         </Loader>
       </div>

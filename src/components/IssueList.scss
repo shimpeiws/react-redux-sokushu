@@ -4,10 +4,13 @@
 
 .header {
   display: flex;
+  background: LightGray;
+  justify-content: center;
 }
 
 .base-row {
   align-items: center;
+  text-align: center;
 }
 
 .row {
