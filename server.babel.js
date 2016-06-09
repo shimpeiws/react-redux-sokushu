@@ -10,4 +10,4 @@ app.get('*', (req, res, _next) => {
   res.sendFile('index.html', { root })
 })
 
-app.listen(process.env.PORT || 8000)
+app.listen(process.env.PORT || 9000)
