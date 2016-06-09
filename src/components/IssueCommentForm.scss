@@ -67,6 +67,10 @@ textarea, input {
   padding: 10px;
   box-sizing: border-box;
   display: block;
+
+  &:disabled {
+    background: #eee;
+  }
 }
 
 input {
