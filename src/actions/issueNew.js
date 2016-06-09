@@ -48,6 +48,7 @@ async function createIssueRequest(issue) {
   const data = {
     issue: {
       title: issue.title,
+      content: issue.content,
     }
   }
 

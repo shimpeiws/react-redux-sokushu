@@ -21,6 +21,10 @@ class IssueNewContainer extends Component {
     this.props.setIssue(this.props.issueNewManager.issue.set('title', title))
   }
 
+  onChangeContent(content) {
+    this.props.setIssue(this.props.issueNewManager.issue.set('content', content))
+  }
+
   onCreateIssue() {
     const issueNewManager = this.props.issueNewManager
     if (!issueNewManager.loading) {
@@ -33,10 +37,11 @@ class IssueNewContainer extends Component {
     return (
       <div className={styles.base}>
         <Loader loaded={!issueNewManager.loading}>
-          IssueNewContainer!!!
+          <Link to="/">List Page</Link>
           <IssueNewHeader
             issueNewManager={issueNewManager}
             onChangeTitle={this.onChangeTitle.bind(this)}
+            onChangeContent={this.onChangeContent.bind(this)}
             onCreateIssue={this.onCreateIssue.bind(this)}
           />
         </Loader>
