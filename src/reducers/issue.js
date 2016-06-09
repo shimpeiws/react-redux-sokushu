@@ -5,9 +5,11 @@ import Issue from '../lib/records/Issue'
 import IssueManager from '../lib/records/IssueManager'
 import IssueListManager from '../lib/records/IssueListManager'
 import IssueDetailManager from '../lib/records/IssueDetailManager'
+import IssueNewManager from '../lib/records/IssueNewManager'
 
 import IssueActions from '../actions/issue'
 import IssueDetailActions from '../actions/issueDetail'
+import IssueNewActions from '../actions/issueNew'
 
 function issueList(state = new List(), action) {
   switch (action.type) {
@@ -65,10 +67,24 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
   return state
 }
 
+function issueNewManager(state = new IssueNewManager(), action) {
+  switch (action.type) {
+    case IssueNewActions.SET_ISSUE:
+      return state.set('issue', action.issue)
+    case IssueNewActions.SET_LOADING:
+      return state.set('loading', action.loading)
+    default:
+      break // do nothing
+  }
+  return state
+}
+
+
 export default combineReducers({
   issueList,
   issueDetail,
   issueManager,
   issueListManager,
   issueDetailManager,
+  issueNewManager,
 })
