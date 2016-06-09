@@ -12,6 +12,7 @@ import 'babel-polyfill'
 import IssueContainer from '../containers/IssueContainer'
 import IssueListContainer from '../containers/IssueListContainer'
 import IssueDetailContainer from '../containers/IssueDetailContainer'
+import IssueNewContainer from '../containers/IssueNewContainer'
 import configureStore from '../stores/configureIssueStore'
 
 const store = configureStore()
@@ -22,6 +23,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={IssueContainer}>
         <IndexRoute component={IssueListContainer} />
+        <Route path="/new" component={IssueNewContainer} />
         <Route path="/:id" component={IssueDetailContainer} />
       </Route>
     </Router>
