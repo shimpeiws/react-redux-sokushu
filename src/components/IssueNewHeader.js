@@ -17,12 +17,12 @@ class IssueNewHeader extends Component {
   }
 
   render() {
-    const { title } = this.props.issueNewManager
+    const { issue } = this.props.issueNewManager
     return (
       <div styleName="base">
         <input
           type="text"
-          value={title}
+          value={issue.title}
           onChange={this.onChangeTitle.bind(this)}
         />
         <span onClick={this.onCreateIssue.bind(this)}>Create</span>

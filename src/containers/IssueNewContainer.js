@@ -4,8 +4,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Loader from 'react-loader'
 
+import Issue from '../lib/records/Issue'
+
 import {
-  setIssueTitle,
+  setIssue,
   createIssue,
 } from '../actions/issueNew'
 
@@ -16,11 +18,14 @@ import styles from './IssueNewContainer.scss'
 class IssueNewContainer extends Component {
 
   onChangeTitle(title) {
-    this.props.setIssueTitle(title)
+    this.props.setIssue(this.props.issueNewManager.issue.set('title', title))
   }
 
   onCreateIssue() {
-    this.props.createIssue()
+    const issueNewManager = this.props.issueNewManager
+    if (!issueNewManager.loading) {
+      this.props.createIssue(issueNewManager.issue)
+    }
   }
 
   render() {
@@ -52,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    setIssueTitle,
+    setIssue,
     createIssue,
   }, dispatch)
 }

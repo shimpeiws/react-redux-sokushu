@@ -45,8 +45,8 @@ function issueDetailManager(state = new IssueDetailManager(), action) {
 
 function issueNewManager(state = new IssueNewManager(), action) {
   switch (action.type) {
-    case IssueNewActions.SET_ISSUE_TITLE:
-      return state.set('title', action.title)
+    case IssueNewActions.SET_ISSUE:
+      return state.set('issue', action.issue)
     case IssueNewActions.SET_LOADING:
       return state.set('loading', action.loading)
     default:
