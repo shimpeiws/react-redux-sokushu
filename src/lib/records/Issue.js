@@ -42,4 +42,12 @@ export default class Issue extends _Issue {
       assignee: issue.assignee ? User.fromJS(issue.assignee) : new User(),
     })
   }
+
+  isValidTitle() {
+    return this.title.length > 0
+  }
+
+  isValidContent() {
+    return this.content.length > 0
+  }
 }

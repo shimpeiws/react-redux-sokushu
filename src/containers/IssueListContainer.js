@@ -68,6 +68,7 @@ class IssueListContainer extends Component {
     return (
       <div className={styles.base}>
         <Loader loaded={!issueListManager.loading}>
+          <Link to="/new">Create Issue</Link>
           <IssueListHeader
             onClickOpen={this.onClickOpen.bind(this)}
             onClickClose={this.onClickClose.bind(this)}
