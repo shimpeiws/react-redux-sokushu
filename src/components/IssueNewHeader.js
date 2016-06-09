@@ -12,6 +12,10 @@ class IssueNewHeader extends Component {
     this.props.onChangeTitle(e.target.value)
   }
 
+  onCreateIssue(e) {
+    this.props.onCreateIssue()
+  }
+
   render() {
     const { title } = this.props.issueNewManager
     return (
@@ -21,6 +25,7 @@ class IssueNewHeader extends Component {
           value={title}
           onChange={this.onChangeTitle.bind(this)}
         />
+        <span onClick={this.onCreateIssue.bind(this)}>Create</span>
       </div>
     )
   }
@@ -29,6 +34,7 @@ class IssueNewHeader extends Component {
 IssueNewHeader.propTypes = {
   issueNewManager: PropTypes.object.isRequired,
   onChangeTitle: PropTypes.func.isRequired,
+  onCreateIssue: PropTypes.func.isRequired,
 }
 
 export default CSSModules(IssueNewHeader, styles)

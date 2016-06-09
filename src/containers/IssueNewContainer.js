@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Loader from 'react-loader'
 
 import {
   setIssueTitle,
+  createIssue,
 } from '../actions/issueNew'
 
 import IssueNewHeader from '../components/IssueNewHeader'
@@ -17,15 +19,22 @@ class IssueNewContainer extends Component {
     this.props.setIssueTitle(title)
   }
 
+  onCreateIssue() {
+    this.props.createIssue()
+  }
+
   render() {
     const {issueNewManager} = this.props
     return (
       <div className={styles.base}>
-        IssueNewContainer!!!
-        <IssueNewHeader
-          issueNewManager={issueNewManager}
-          onChangeTitle={this.onChangeTitle.bind(this)}
-        />
+        <Loader loaded={!issueNewManager.loading}>
+          IssueNewContainer!!!
+          <IssueNewHeader
+            issueNewManager={issueNewManager}
+            onChangeTitle={this.onChangeTitle.bind(this)}
+            onCreateIssue={this.onCreateIssue.bind(this)}
+          />
+        </Loader>
       </div>
     )
   }
@@ -44,6 +53,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setIssueTitle,
+    createIssue,
   }, dispatch)
 }
 
